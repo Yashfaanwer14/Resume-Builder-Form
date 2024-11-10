@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="header.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="header.css">
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        header {
+            background-color: #081420;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        header button {
+            background-color: #ffcc00;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer-icons a {
+            color: white;
+            margin: 0 10px;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+        .wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .input-box {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Improved Skills Section */
+        .toggle-btn, .add-skill-btn, .remove-skill-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .toggle-btn:hover, .add-skill-btn:hover, .remove-skill-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .skill-row {
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Resume Builder</h1>
+        <button onclick="location.href='#'">Let's Create</button>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="wrapper">
+            <form id="personal-info-form" onsubmit="return validateForm(event)">
+                <h1>Personal Info</h1>
+                <div class="input-box">
+                    <input type="text" id="name" placeholder="Name">
+                </div>
+                <div class="input-box">
+                    <input type="email" id="email" placeholder="Email">
+                </div>
+                <div class="input-box">
+                    <input type="number" id="number" placeholder="Number">
+                </div>
+                <div class="input-box">
+                    <input type="file" id="image-upload" accept="image/*">
+                </div>
+
+                <h1>Education</h1>
+                <div class="input-box">
+                    <textarea id="education" placeholder="Enter your education details"></textarea>
+                </div>
+
+                <h1><br>Skills</h1>
+                <div class="toggle-section">
+                    <button type="button" class="toggle-btn" onclick="toggleSkills()">Show Skills</button>
+                </div>
+                <div id="skills-section" class="skills-section" style="display: none;">
+                    <div class="input-box" id="skills-list">
+                        <div class="skill-row">
+                            <input type="text" id="skill-1" placeholder="Enter your skill" name="skills[]">
+                            <button type="button" class="remove-skill-btn" onclick="removeSkill(this)">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-skill-btn" onclick="addSkill()">Add Skill</button>
+                </div>
+
+                <h1><br><br> Experience</h1>
+                <div class="input-box">
+                    <textarea id="work-experience" placeholder="Enter your work experience"></textarea>
+                </div>
+
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-10">
+        <div class="container">
+            <div class="row mb-5 pb-3 no-gutters">
+                <div class="col-md-4 mb-md-0 mb-4 d-flex">
+                    <div class="con con-1 w-100 py-5">
+                        <div class="con-info w-100 text-center">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="ion-ios-call"></span>
+                            </div>
+                            <div class="text">
+                                <span>Contact <br></span>
+                                <span>0312-34567689</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-md-0 mb-4 d-flex">
+                    <div class="con con-2 w-100 py-5">
+                        <div class="con-info w-100 text-center">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="ion-ios-mail"></span>
+                            </div>
+                            <div class="text">
+                                <span><br><br>Mail
+                                    <br>yashfaanwer14@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-md-0 mb-4 d-flex">
+                    <div class="con con-3 w-100 py-5">
+                        <div class="con-info w-100 text-center">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="ion-ios-pin"></span>
+                            </div>
+                            <div class="text">
+                                <span>Location <br> Karachi, Pakistan</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5 pt-4 border-top">
+                <div class="col-md-6 col-lg-8 mb-md-0 mb-4">
+                    <p class="copyright mb-0">
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved.
+                    </p>
+                </div>
+                <div class="row mt-5 pt-6 border-top">
+                    <span><br>Follow Us</span>
+                    <ul class="col-md-6 col-lg-8 mb-md-0 mb-4">
+                        <li><a href="https://github.com" target="_blank" class="ion-logo-github">Github</a></li>
+                        <li><a href="https://facebook.com" target="_blank" class="ion-logo-facebook">Facebook</a></li>
+                        <li><a href="https://instagram.com" target="_blank" class="ion-logo-instagram">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="finisher-header.es5.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Skill section toggle and dynamic add/remove skills -->
+    <script>
+        function toggleSkills() {
+            const skillsSection = document.getElementById('skills-section');
+            skillsSection.style.display = skillsSection.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function addSkill() {
+            const skillsList = document.getElementById('skills-list');
+            const skillRow = document.createElement('div');
+            skillRow.className = 'skill-row';
+
+            skillRow.innerHTML = `
+                <input type="text" placeholder="Enter your skill" name="skills[]">
+                <button type="button" class="remove-skill-btn" onclick="removeSkill(this)">Remove</button>
+            `;
+            skillsList.appendChild(skillRow);
+        }
+
+        function removeSkill(button) {
+            button.parentElement.remove();
+        }
+    </script>
+</body>
+</html>
+
